@@ -16,7 +16,7 @@ export class MyserviceService {
   constructor(private http: HttpClient,private _router: Router) { }
   getVideosForSearch(value: any): Observable<any> {
     // let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&channelId=' + channel + '&order=date&part=snippet &type=video,id&maxResults=' + maxResults
-    let url = '/api/search?part=snippet&maxResults=50&q=' + value + '&key=' + this.apiKey
+    let url = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=' + value + '&key=' + this.apiKey
     return this.http.get(url)
       .pipe(map((res) => {
         return res;
@@ -24,7 +24,7 @@ export class MyserviceService {
   }
 
   getPopularVideos(): Observable<any> {
-    let url = '/api/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=80&regionCode=US&key=' + this.apiKey
+    let url = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=80&regionCode=US&key=' + this.apiKey
     return this.http.get(url)
       .pipe(map((res) => {
         return res;
@@ -32,7 +32,7 @@ export class MyserviceService {
   }
 
   getParticularVideo(videoId:any): Observable<any> {
-    let url = '/api/videos?part=snippet%2CcontentDetails%2Cstatistics&id='+videoId+'&key=' + this.apiKey //
+    let url = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='+videoId+'&key=' + this.apiKey //
     return this.http.get(url)
       .pipe(map((res) => {
         return res;
@@ -40,7 +40,7 @@ export class MyserviceService {
   }
 
   getRelatedVideos(videoId:any):Observable<any>{
-    let url = '/api/search?part=snippet&relatedToVideoId='+videoId+'&type=video&key=' + this.apiKey
+    let url = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId='+videoId+'&type=video&key=' + this.apiKey
     return this.http.get(url)
       .pipe(map((res) => {
         return res;
